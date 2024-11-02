@@ -185,12 +185,12 @@ class CashCardApplicationTests {
         assertThat(getResponse.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
     
- // verify delete non existent cashcard
-//    @Test
-//    void shouldNotDeleteACashCardThatDoesNotExist() {
-//        ResponseEntity<Void> deleteResponse = restTemplate.exchange("/cashcards/99999", HttpMethod.DELETE, null, Void.class);
-//        assertThat(deleteResponse.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
-//    }
+    //verify delete non existent cashcard
+    @Test
+    void shouldNotDeleteACashCardThatDoesNotExist() {
+        ResponseEntity<Void> deleteResponse = restTemplate.exchange("/cashcards/99999", HttpMethod.DELETE, null, Void.class);
+        assertThat(deleteResponse.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+    }
     
     
     

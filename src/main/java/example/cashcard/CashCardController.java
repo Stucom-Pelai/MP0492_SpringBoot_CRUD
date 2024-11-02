@@ -56,11 +56,7 @@ class CashCardController {
 	// containing a Location header field that provides an identifier for the
 	// primary resource created
 	@PostMapping
-	private ResponseEntity<Void> createCashCard(@RequestBody CashCard newCashCardRequest, UriComponentsBuilder ucb) {// ucb
-																														// by
-																														// Spring's
-																														// IoC
-																														// Container
+	private ResponseEntity<Void> createCashCard(@RequestBody CashCard newCashCardRequest, UriComponentsBuilder ucb) {
 		// it saves a new CashCard for us, and returns the saved object with a unique id
 		// provided by the database.
 		// insert cashcard
@@ -120,9 +116,14 @@ class CashCardController {
 	}
 
 	// DELETE requests that match cashcards will be handled by this method
-	@DeleteMapping("/{id}")
-	private ResponseEntity<Void> deleteCashCard(@PathVariable Long id) {
-		cashCardRepository.deleteById(id);
-		return ResponseEntity.noContent().build();
+	@DeleteMapping("/{requestedId}")
+	private ResponseEntity<Void> deleteCashCard(@PathVariable Long requestedId) {		
+		if (cashCardRepository.existsById(requestedId)) {
+			cashCardRepository.deleteById(requestedId);
+			// just return 204 NO CONTENT for now.
+			return ResponseEntity.noContent().build();
+		} else {
+			return ResponseEntity.notFound().build();
+		}
 	}
 }
