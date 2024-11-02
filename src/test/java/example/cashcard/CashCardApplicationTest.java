@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT) //start our Spring Boot application and make it available for our test to perform requests
 @DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD) //Spring to start with a clean state, to clean up after creating a new Cash Card
-class CashCardApplicationTests {
+class CashCardApplicationTest {
     @Autowired // inject HTTP requests to the locally running application.
     TestRestTemplate restTemplate;
     
